@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import Page from './page';
 import reportWebVitals from './reportWebVitals';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import App from './App';
+import Header from './header';
+import Content from './content';
 
 ReactDOM.render(
   <React.StrictMode>
     {/*<App />*/}
-    <Page/>
+    <Header/>
+    <Content/>
   </React.StrictMode>,
   document.getElementById('root')
 );
