@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .bs import bs;
-# Create your views here.
 
 def index(request):
     context={
