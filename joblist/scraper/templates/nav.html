@@ -1,0 +1,26 @@
+<nav>
+    <div class="nav nav-tabs nav-justified">
+        <a class="nav-item nav-link active" data-toggle="tab" href='#home' >Home</a>
+        <a class="nav-item nav-link" data-toggle="tab" href="#team" >Team</a>
+        <a class="nav-item nav-link" data-toggle="tab" href='#about'>About</a>
+    </div>
+</nav>
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="home">
+        <div class="container">
+            {% for sections in content %}
+                <section style="padding-top: 50px">
+                    <ol>
+                        {%for items in sections%}
+                            <li>{{items}}</li>
+                        {%endfor%}
+                    </ol>
+                </section>
+            {% endfor %}
+        </div>  
+    </div>
+    <div class="tab-pane fade" id="team">test 2</div>
+    <div class="tab-pane fade" id="about">
+        <p class="container">Joblist is a simple web scraper built by Jonathan and Richard to minimize the time it takes to search for internships.</p>
+    </div>
+</div>
