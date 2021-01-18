@@ -9,7 +9,11 @@ from bs4 import BeautifulSoup
 
 url = "https://www.indeed.com/jobs?q=Computer+Science+Internship"
 info = []
-test =[]
+titles = []
+locations = []
+companies = []
+summaries = []
+
 #makes get request for the page we are looking at 
 page = requests.get(url)
 
@@ -51,13 +55,15 @@ def summary(elem):
     return summary
     
 for job_elem in elem:
-    job_set = []
-    job_set.append(title(job_elem))
-    job_set.append(location(job_elem))
+    titles.append(title(job_elem))
+    locations.append(location(job_elem))
     #job_set.append(rating(job_elem))
-    job_set.append(company(job_elem))
+    companies.append(company(job_elem))
     #job_set.append(salary(job_elem))
-    job_set.append(summary(job_elem))
-    info.append(job_set)
-
+    summaries.append(summary(job_elem))
+    
+info.append(titles)
+info.append(locations)
+info.append(companies)
+info.append(summaries)
 print(info)
