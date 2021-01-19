@@ -8,15 +8,16 @@
 <div class="tab-content">
     <div class="tab-pane fade show active" id="home">
         <div class="container">
-            {% for sections in content %}
-                <section style="padding-top: 50px">
-                    <ol>
-                        {%for items in sections%}
-                            <li>{{items}}</li>
-                        {%endfor%}
-                    </ol>
-                </section>
-            {% endfor %}
+            <ol>
+                {% for items in content%}
+                <li style="padding-top:25px">
+                    <a href="https://www.indeed.com/viewjob?jk={{items.1}}">{{items.0}}</a>
+                    <div>Where: {{items.2}}</div>
+                    <div>Who: {{items.3}}</div>
+                    <div>Summary: {{items.4}}</div>
+                </li>
+                {%endfor%}
+            </ol>
         </div>  
     </div>
     <div class="tab-pane fade" id="team">test 2</div>
