@@ -5,19 +5,23 @@
         <a class="nav-item nav-link" data-toggle="tab" href='#about'>About</a>
     </div>
 </nav>
-<div class="tab-content">
+<div class="tab-content">   
     <div class="tab-pane fade show active" id="home">
         <div class="container">
-            <ol>
-                {% for items in content%}
-                <li style="padding-top:25px">
-                    <a href="https://www.indeed.com/viewjob?jk={{items.1}}">{{items.0}}</a>
-                    <div>Where: {{items.2}}</div>
-                    <div>Who: {{items.3}}</div>
-                    <div>Summary: {{items.4}}</div>
-                </li>
+            {% for i in content%}
+                {% for items in i%}
+                    <li style="width: 18rem" class="card">
+                        <section class="card-body">
+                            <h6 class="card-title">
+                                    <a href="https://www.indeed.com/viewjob?jk={{items.1}}">{{items.0}}</a> 
+                                    - <b>{{items.3}}</b>
+                            </h6>
+                            <div class="card-subtitle mb-2 text-muted">{{items.2}}</div>
+                            <p class="card-text">{{items.4}}</p>
+                        </section>
+                    </li>   
                 {%endfor%}
-            </ol>
+            {%endfor%}    
         </div>  
     </div>
     <div class="tab-pane fade" id="team">test 2</div>

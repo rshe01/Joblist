@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 def bs(url):
-    url = "https://www.indeed.com/jobs?q=Computer+Science+Internship"
+    url = url
     info = []
     titles = []
     locations = []
@@ -25,12 +25,11 @@ def bs(url):
 
     def location(elem):
         rating_location_elem = elem.find('div', class_='sjcl')
-        if rating_location_elem is not None:
-            location = rating_location_elem.find("span", class_='location').text.strip()
-            return location
+        if rating_location_elem.find("span", class_='location') is None:
+            return "N/A"
         else:
-            return "No Location Specified"
-        
+            return rating_location_elem.find("span", class_='location').text.strip()
+
     #rating is funky...
     def rating(elem):
         rating_location_elem = elem.find('div', class_='sjcl')
@@ -54,16 +53,17 @@ def bs(url):
         return summary
         
     temp=[]
+    desired_locations = ['VA', 'Virginia', "Remote", "DC"]
     for job_elem in elem:
         temp2=[]
-        
-        temp2.append(title(job_elem))
-        temp2.append(job_elem.get("data-jk"))
-        temp2.append(location(job_elem))
-        temp2.append(company(job_elem))
-        temp2.append(summary(job_elem))
-        
-        temp.append(temp2)
+        for i in desired_locations:
+            if(i in location(job_elem)):
+                temp2.append(title(job_elem))
+                temp2.append(job_elem.get("data-jk"))
+                temp2.append(location(job_elem))
+                temp2.append(company(job_elem))
+                temp2.append(summary(job_elem))
+                temp.append(temp2)
 
         #id.append(job_elem.get("data-jk"))
         #titles.append(title(job_elem))

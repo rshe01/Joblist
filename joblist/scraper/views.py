@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .bs import bs;
+from .callingBS import big;
 
 def index(request):
     context={
-        "content":bs("https://www.indeed.com/jobs?q=Computer+Science+Internship"),
+        "content":big(),
         "loopLength":range(15),
     }
     return render(request, 'page.html', context=context)
