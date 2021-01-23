@@ -8,23 +8,28 @@
 <div class="tab-content">   
     <div class="tab-pane fade show active" id="home">
         <div class="container">
-            {% for i in content%}
-                {% for items in i%}
-                    <li style="width: 18rem" class="card">
-                        <section class="card-body">
-                            <h6 class="card-title">
+            <section style="display:flex; flex-wrap: wrap; justify-content: space-around; align-content: space-around;">
+                {% for i in content%}
+                    {% for items in i%}
+                        <section style="max-width: 20rem; margin-top: 1rem; margin-bottom: 1rem;" class="card border-dark">
+                            <div class="card-header"><b>{{items.3}}</b></div>
+                            <div class="card-body">
+                                <h6 class="card-title">
                                     <a href="https://www.indeed.com/viewjob?jk={{items.1}}">{{items.0}}</a> 
-                                    - <b>{{items.3}}</b>
-                            </h6>
-                            <div class="card-subtitle mb-2 text-muted">{{items.2}}</div>
-                            <p class="card-text">{{items.4}}</p>
-                        </section>
-                    </li>   
+                                    <div>{{items.2}}</div>
+                                </h6>
+                                <p class="card-text">{{items.4}}</p>
+                            </div>
+                        </section>   
+                    {%endfor%}
                 {%endfor%}
-            {%endfor%}    
+            </section>
+                
         </div>  
     </div>
-    <div class="tab-pane fade" id="team">test 2</div>
+    <div class="tab-pane fade" id="team">
+        <p class="container">Brought to you by Tangerines.</p>
+    </div>
     <div class="tab-pane fade" id="about">
         <p class="container">Joblist is a simple web scraper built by Jonathan and Richard to minimize the time it takes to search for internships.</p>
     </div>
