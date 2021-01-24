@@ -1,15 +1,10 @@
 import requests 
 from bs4 import BeautifulSoup
+import re
 
 def bs(url):
     url = url
-    info = []
-    titles = []
-    locations = []
-    companies = []
-    summaries = []
-    id =[]
-
+    
     #makes get request for the page we are looking at 
     page = requests.get(url)
 
@@ -30,54 +25,33 @@ def bs(url):
         else:
             return rating_location_elem.find("span", class_='location').text.strip()
 
-    #rating is funky...
-    def rating(elem):
-        rating_location_elem = elem.find('div', class_='sjcl')
-        rating = rating_location_elem.find("span", class_='ratingsContent')
-        return rating
-
     def company(elem):
         rating_location_elem = elem.find('div', class_='sjcl')
         company = rating_location_elem.find("span", class_='company').text.strip()
         return company
-
-    #does not work since salarySnippet does not exist in the soup. wtf??
-    def salary(elem):
-        salary_elem = elem.find('div', class_='salarySnippet holisticSalary')
-        salary = salary_elem.text.strip()
-        return salary
 
     def summary(elem):
         summary_elem = elem.find("div", class_='summary')
         summary = summary_elem.text.strip()
         return summary
         
+    def date(elem):
+        date_elem = elem.find("div", class_='jobsearch-SerpJobCard-footer')
+        date = date_elem.find("span", class_="date")
+        num = int(re.search(r'\d+', date.text.strip()).group())
+        return num
+    
     temp=[]
     desired_locations = ['VA', 'Virginia', "Remote", "DC"]
     for job_elem in elem:
         temp2=[]
-        for i in desired_locations:
-            if(i in location(job_elem)):
-                temp2.append(title(job_elem))
-                temp2.append(job_elem.get("data-jk"))
-                temp2.append(location(job_elem))
-                temp2.append(company(job_elem))
-                temp2.append(summary(job_elem))
-                temp.append(temp2)
-
-        #id.append(job_elem.get("data-jk"))
-        #titles.append(title(job_elem))
-        #locations.append(location(job_elem))
-        ##job_set.append(rating(job_elem))
-        #companies.append(company(job_elem))
-        ##job_set.append(salary(job_elem))
-        #summaries.append(summary(job_elem))
-        
-    #print(temp)
+        if(date(job_elem)<30):
+            for i in desired_locations:
+                if(i in location(job_elem)):
+                    temp2.append(title(job_elem))
+                    temp2.append(job_elem.get("data-jk"))
+                    temp2.append(location(job_elem))
+                    temp2.append(company(job_elem))
+                    temp2.append(summary(job_elem))
+                    temp.append(temp2)
     return temp
-
-    #info.append(titles)
-    #info.append(locations)
-    #info.append(companies)
-    #info.append(summaries)
-    ##print(info)

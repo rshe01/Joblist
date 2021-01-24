@@ -16,17 +16,17 @@
   background-image: url("/static/images/person.png");
   background-repeat: no-repeat;
   background-size: 50px;
-  bottom: 205px;
+  bottom: 185px;
   height: 75px;
   width: 50px;
   left: 25%;
 }
 .tree {
   background-image: url("/static/images/tree.png");
-  bottom: 167px;
+  bottom: 147px;
   height: 250px;
   width: 300px;
-  right: 25%;
+  right: 12%;
   background-size: 300px;
   background-repeat: no-repeat;
 }
@@ -34,14 +34,14 @@
 .grass {
   background-image: url("/static/images/grass.png");
   background-repeat: repeat-x;
-  bottom: 190px;
+  bottom: 170px;
   height: 50px;
   background-size: 500px;
 }
 
 .backgroundBottom {
   background-color: black;
-  height: 200px;
+  height: 180px;
   bottom: 0;
   color: white;
 }
@@ -79,4 +79,8 @@
 .footer-links a:hover {
   color: #3366cc;
   text-decoration: none;
+}
+
+.testest {
+  background-color: yellow;
 }
