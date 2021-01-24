@@ -53,5 +53,6 @@ def bs(url):
                     temp2.append(location(job_elem))
                     temp2.append(company(job_elem))
                     temp2.append(summary(job_elem))
+                    temp2.append(date(job_elem))
                     temp.append(temp2)
     return temp
