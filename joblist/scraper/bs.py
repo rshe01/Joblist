@@ -37,9 +37,12 @@ def bs(url):
         
     def date(elem):
         date_elem = elem.find("div", class_='jobsearch-SerpJobCard-footer')
-        date = date_elem.find("span", class_="date")
-        num = int(re.search(r'\d+', date.text.strip()).group())
-        return num
+        date = date_elem.find("span", class_="date").text.strip()
+        if date == "Today":
+            return 0
+        else:
+            numbers = re.findall("\d+", date)[0]
+            return int(numbers)
     
     temp=[]
     desired_locations = ['VA', 'Virginia', "Remote", "DC"]
